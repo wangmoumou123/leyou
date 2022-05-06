@@ -1,0 +1,30 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: upload-service
+  servlet:
+    multipart:
+      max-file-size: 5MB  #制文件大小
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+fdfs:
+  so-timeout: 2500
+  connect-timeout: 600
+  thumb-image:
+    width: 60
+    height: 60
+  tracker-list:
+    - 192.168.0.253:22122
+ly:
+  upload:
+    baseUrl: http://192.168.0.253:8888/
+    allowTypes:
+      - image/jpeg
+      - image/bmp
+      - image/png

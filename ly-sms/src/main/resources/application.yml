@@ -1,0 +1,28 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: sms-service
+  rabbitmq:
+    host: 127.0.0.1
+    username: leyou
+    password: leyou
+    virtual-host: /leyou
+  redis:
+    host: 192.168.0.253
+ly:
+  sms:
+    accessKeyId: LTAItNxtDfk7MJMq
+    accessKeySecret: HKUIDl21ZM7XoubErXjUFJq84dha8W
+    signName: 乐优商城
+    verifyCodeTemplate: SMS_143714980
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 127.0.0.1

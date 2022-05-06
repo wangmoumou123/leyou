@@ -1,0 +1,51 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 30   #最大连接数
+zuul:
+  prefix: /api
+  routes:
+    items-service: /item/**
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false
+    search-service: /search/**
+    page-service: /page/**
+    user-service: /user/**
+    auth-service: /auth/**
+    cart-service: /cart/**
+  add-host-header: true   # 携带请求本身的head头信息
+  sensitive-headers:  # 配置禁止使用的头信息,这里设置为null,否则set-cookie无效
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+ribbon:
+  ConnecTimeout: 1000
+  ReadTimeout: 3500
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+
+leyou:
+  jwt:
+    pubKeyPath: E:\\javastudy\\spring_cloud_stu\\leyou\\ly-auth\\ly-auth-common\\tmp\\rsa\\rsa.pub
+    cookieName: LY_TOKEN # cookie的名称
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
